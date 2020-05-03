@@ -22,6 +22,8 @@ for file in onlyfiles:
 			# find the errors in the ticker value and add them to a list to fix later
 			nans = dfs[y][(dfs[y]['ticker'].isna()) == True].index
 			unique = dfs[y][(dfs[y]['ticker'].isna()) != True].index
+
+			# drop values without a ticker
 			dfs[y].drop(nans)
 			for ind in nans:
 				nan_names.append(ind)
@@ -33,6 +35,8 @@ for file in onlyfiles:
 nan_names = pd.Series(nan_names).drop_duplicates()
 ticker_lookup_error_count = len(nan_names)
 nan_names = nan_names.to_json()
+
+unique = pd.Series(unique).drop_duplicates().to_json()
 
 with open('inputs/stats.txt', 'w') as out:
 	out.write(f'ticker Lookup Error Count: {ticker_lookup_error_count}')
