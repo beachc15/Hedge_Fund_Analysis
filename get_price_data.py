@@ -47,14 +47,24 @@ if __name__ == '__main__':
 			# NOTE: year function only works for dates after the year 2000 at this point as it's hardcoded
 			portfolio = (reader[port], date(month=dt[0], day=dt[1], year=int(f"20{dt[2]}")))
 			portfolios.append(portfolio)
-	one = portfolios[0:2]
-	two = portfolios[3:5]
-	three = portfolios[6:8]
-	four = portfolios[9:10]
-	five = portfolios[11:13]
-	six = portfolios[14:16]
-	seven = portfolios[17:18]
-	eight = portfolios[19:20]
+	# HARDCODED initialize all of my processes and assign them their tasks
+	one = [portfolios[x] for x in range(len(portfolios)) if 0 <= x <= 2]
+	two = [portfolios[x] for x in range(len(portfolios)) if 3 <= x <= 5]
+	three = [portfolios[x] for x in range(len(portfolios)) if 6 <= x <= 8]
+	four = [portfolios[x] for x in range(len(portfolios)) if 9 <= x <= 10]
+	five = [portfolios[x] for x in range(len(portfolios)) if 11 <= x <= 13]
+	six = [portfolios[x] for x in range(len(portfolios)) if 14 <= x <= 16]
+	seven = [portfolios[x] for x in range(len(portfolios)) if 17 <= x <= 18]
+	eight = [portfolios[x] for x in range(len(portfolios)) if 19 <= x <= 20]
+
+	# one = portfolios[0:2]
+	# two = portfolios[3:5]
+	# three = portfolios[6:8]
+	# four = portfolios[9:10]
+	# five = portfolios[11:13]
+	# six = portfolios[14:16]
+	# seven = portfolios[17:18]
+	# eight = portfolios[19:20]
 	processes = [one, two, three, four, five, six, seven, eight]
 	with multiprocessing.Pool(8) as p:
 		print(p.map(main, processes))
