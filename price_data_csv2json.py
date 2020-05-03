@@ -3,6 +3,8 @@ from os.path import isfile, join
 
 import pandas as pd
 
+"""just converts my .csv files into json files under the orig_url directory"""
+
 orig_url = 'historical_prices'
 output_url = 'historical_prices/jsons/'
 onlyfiles = [f for f in listdir(orig_url) if isfile(join(orig_url, f))]
