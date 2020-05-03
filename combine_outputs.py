@@ -21,10 +21,14 @@ for file in onlyfiles:
 				dfs[y] = (pd.DataFrame(z))
 			# find the errors in the ticker value and add them to a list to fix later
 			nans = dfs[y][(dfs[y]['ticker'].isna()) == True].index
-			unique = dfs[y][(dfs[y]['ticker'].isna()) != True].index
+			drops = dfs[y]['ticker'].str.endswith("*")
+			drop_index = drops[drops == True].index
+			dfs[y] = dfs[y].drop(drop_index)
+			unique = dfs[y][(dfs[y]['ticker'].isna()) != True]['ticker']
 
 			# drop values without a ticker
-			dfs[y].drop(nans)
+			dfs[y] = dfs[y].drop(nans)
+
 			for ind in nans:
 				nan_names.append(ind)
 			for unq in unique:
@@ -43,7 +47,7 @@ with open('inputs/stats.txt', 'w') as out:
 	out.write(nan_names)
 
 with open('inputs/unique.json', 'w') as out:
-	json.dump(tickers, out)
+	out.write(unique)
 
 with open('inputs/export.json', 'w') as out:
 	json.dump(dfs, out)
