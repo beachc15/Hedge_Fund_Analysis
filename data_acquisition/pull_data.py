@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from numpy import nan
 from tqdm import tqdm
 
-import scraper as s
+from data_acquisition import scraper as s
 
 
 def main():

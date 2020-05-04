@@ -13,7 +13,7 @@ tickers = []
 nan_names = []
 for file in onlyfiles:
 	i += 1
-	with open(f'outputs/{file}', 'r') as inp:
+	with open(f'data_acquisition/outputs/{file}', 'r') as inp:
 		x = (json.load(inp))
 		for y in x:
 			z = json.loads(x[y])
