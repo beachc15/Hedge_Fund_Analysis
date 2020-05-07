@@ -12,3 +12,7 @@ Data Value
  - Add Tableau data charts for my front-end report
  - Clean up statistics labels
  - write more conclusive report
+ 
+ Excel
+ - Clarify the scope of my analysis
+ 
